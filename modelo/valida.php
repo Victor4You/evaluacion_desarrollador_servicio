@@ -24,7 +24,7 @@
 		}
 
 		public function ObtenerResponse(){
-			//Aqui se retorna la respuesta
+			return $this->response;
 		}
 
 		public function ExportarJson($nombreArchivo){			

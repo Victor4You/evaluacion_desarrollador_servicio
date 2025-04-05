@@ -38,20 +38,23 @@
 			}				
 		}
 
-		public function MetodoGet(){			
+		public function MetodoGet(){		
 			try {
 				$ObjetoColor = new objeto();				
 				$Validar = new valida();
-				$Valor = [];
-				
-				$Validar->CreaRespuesta("0", "", $Valor);
-				
+		
+				// ¡Esta es la línea clave que estaba faltando!
+				$Valor = $ObjetoColor->ObtenerObjeto();
+		
+				$Validar->CreaRespuesta("0", "Ok", $Valor);
+		
 				echo json_encode($Validar->ObtenerResponse(), JSON_PRETTY_PRINT  | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
 			} catch (Exception $e) {
 				$Validar->CreaRespuesta("-1", "Error", []);
+				echo json_encode($Validar->ObtenerResponse());
 			}
-			$Response = $Validar->ObtenerResponse();
 		}
+		
 		public function exportar($nombreArchivo){
 			try{
 				$Validar = new valida();
